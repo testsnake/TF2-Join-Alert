@@ -9,11 +9,16 @@ const PORT = process.env.PORT || 3000;
 const app = new Koa();
 
 const steamAuth = () => {
-    if (process.env.REFRESH_TOKEN) {
+    if (process.env.REFRESH_TOKEN && process.env.REFRESH_TOKEN !== 'your_steam_refresh_token') {
         return {
             refreshToken: process.env.REFRESH_TOKEN
         };
-    } else if (process.env.STEAM_ACCOUNT && process.env.STEAM_PASSWORD) {
+    } else if (
+        process.env.STEAM_ACCOUNT &&
+        process.env.STEAM_PASSWORD &&
+        process.env.STEAM_ACCOUNT !== 'your_steam_username' &&
+        process.env.STEAM_PASSWORD !== 'your_steam_password'
+    ) {
         return {
             accountName: process.env.STEAM_ACCOUNT,
             password: process.env.STEAM_PASSWORD
