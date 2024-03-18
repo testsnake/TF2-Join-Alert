@@ -29,14 +29,14 @@ const createTable = () => {
     }
 };
 
+const tableReady = createTable();
+
 const statements = {
     addUser: db.prepare('INSERT INTO users (id) VALUES (?)'),
     removeUser: db.prepare('DELETE FROM users WHERE id = ?'),
     updateUser: db.prepare('UPDATE users SET notifications = ? WHERE id = ?'),
     getUser: db.prepare('SELECT * FROM users WHERE id = ?')
 };
-
-const tableReady = createTable();
 
 async function addUser(id: string) {
     const result = statements.addUser.run(id);
